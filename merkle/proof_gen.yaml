@@ -1,5 +1,5 @@
 leaf_position: 95
-leaf_value: "data item 95"
+leaf_value: data item 95
 proof_hash_values_base64:
   - 7yCz04kEoWwZMJhACc6jS8rZPZMMJlSjNyogJZCSlC8=
   - BjC9sdy8b1Ue2mHPqk39+o5+rNuyhxZ550THdncLb3o=
@@ -10,4 +10,5 @@ proof_hash_values_base64:
   - 2uT5i7AnIFpKWNLGuJ5iUuOfRJYQE0EC2FMDo8Oqkoc=
   - FP24vS8Xd/nfd+lEEPM8KnAMcnuS7lcLrlX/sOvmjR8=
   - k2gokRSfhSJsyBjnj8/GvxDvilSmCUdm0wlhO9wSlZE=
-  - suvPN/Iy9ix69Jq60Tyn7eWVF5kDF/5pZMaGdjHHogQ=
+  - 9mgN0lyDsQ99d5N4MmsJLTt16U1Q8IsvWutGw/lxQMY=
+proof_hash_values: null

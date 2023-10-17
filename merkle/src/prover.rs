@@ -1,8 +1,10 @@
-use crate::util::{Hash32Bytes, write_merkle_proof,encode_hash,hash_internal, MerkleProof, hash_leaf};
+use crate::util::{
+    encode_hash, hash_internal, hash_leaf, write_merkle_proof, Hash32Bytes, MerkleProof,
+};
 
 fn gen_leaves_for_merkle_tree(num_leaves: usize) -> Vec<String> {
     let leaves: Vec<String> = (0..num_leaves)
-        .map(|i| format!("data item {}", i))
+        .map(|i: usize| format!("data item {}", i))
         .collect();
 
     println!("\nI generated #{} leaves for a Merkle tree.", num_leaves);
@@ -28,6 +30,21 @@ pub fn gen_merkle_proof(leaves: Vec<String>, leaf_pos: usize) -> Vec<Hash32Bytes
     let mut level_pos = leaf_pos;
     for _level in 0..height {
         //FILL ME IN
+        if level_pos % 2 == 0 {
+            hashes.push(state[level_pos + 1]);
+        } else {
+            hashes.push(state[level_pos - 1]);
+        }
+
+        state = state
+            .chunks(2)
+            .map(|chunk| hash_internal(chunk[0], chunk[1]))
+            .collect();
+
+        level_pos >>= 1;
+        if _level == height - 1 {
+            println!("\nThe Merkle root is: {}", encode_hash(state[0]))
+        }
     }
 
     // Returns list of hashes that make up the Merkle Proof
@@ -37,7 +54,7 @@ pub fn gen_merkle_proof(leaves: Vec<String>, leaf_pos: usize) -> Vec<Hash32Bytes
 pub fn run(leaf_position: usize) {
     const NUM_LEAVES: usize = 1000; // replace with your actual constant
 
-    let leaves = gen_leaves_for_merkle_tree(NUM_LEAVES);
+    let leaves: Vec<String> = gen_leaves_for_merkle_tree(NUM_LEAVES);
     assert!(leaf_position < leaves.len());
     let leaf_value = leaves[leaf_position].clone();
     let hashes = gen_merkle_proof(leaves, leaf_position);
@@ -48,7 +65,7 @@ pub fn run(leaf_position: usize) {
         proof_hash_values_base64.push(encode_hash(hash))
     }
 
-    let proof = MerkleProof{
+    let proof = MerkleProof {
         leaf_position,
         leaf_value,
         proof_hash_values_base64,
