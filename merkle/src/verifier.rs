@@ -7,13 +7,8 @@ pub fn run(proof_file: &String, hash_base64: &str) {
     verify_merkle_proof(merkle_proof, hash_base64)
 }
 
-<<<<<<< HEAD
 fn verify_merkle_proof(merkle_proof: Box<MerkleProof>, hash_base64: &str) {
     let root = decode_hash(hash_base64);
-=======
-fn verify_merkle_proof(merkle_proof: Box<MerkleProof>) {
-    let root: [u8; 32] = decode_hash("1qIbsvuF6FrhNjMD4p06srUye6G4FfFINDDkNfKUpTs=");
->>>>>>> bef0cd970507e7aae85e09a4f718a04effa85e96
     let computed_root = compute_merkle_root_from_merkle_proof(merkle_proof);
     println!("computed_root: {:?}", computed_root);
     assert_eq!(computed_root, root);
