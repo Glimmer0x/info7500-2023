@@ -52,7 +52,7 @@ pub fn gen_merkle_proof(leaves: Vec<String>, leaf_pos: usize) -> Vec<Hash32Bytes
             .collect();
 
         level_pos >>= 1;
-        if _level == height - 1 {
+        if level == height - 1 {
             println!("\nThe Merkle root is: {}", encode_hash(state[0]))
         }
     }
