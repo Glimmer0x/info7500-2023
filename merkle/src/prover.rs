@@ -64,7 +64,11 @@ pub fn gen_merkle_proof(leaves: Vec<String>, leaf_pos: usize) -> Vec<Hash32Bytes
 pub fn run(leaf_position: usize, num_leaves: usize) {
     let file_name = format!("proof_gen_{}_{}.yaml", num_leaves, leaf_position);
 
+<<<<<<< HEAD
     let leaves = gen_leaves_for_merkle_tree(num_leaves);
+=======
+    let leaves: Vec<String> = gen_leaves_for_merkle_tree(NUM_LEAVES);
+>>>>>>> bef0cd970507e7aae85e09a4f718a04effa85e96
     assert!(leaf_position < leaves.len());
     let leaf_value = leaves[leaf_position].clone();
     let hashes = gen_merkle_proof(leaves, leaf_position);
@@ -82,5 +86,9 @@ pub fn run(leaf_position: usize, num_leaves: usize) {
         proof_hash_values: None,
     };
 
+<<<<<<< HEAD
     write_merkle_proof(&proof, &file_name)
+=======
+    write_merkle_proof(&proof, "proof_gen.yaml")
+>>>>>>> bef0cd970507e7aae85e09a4f718a04effa85e96
 }
